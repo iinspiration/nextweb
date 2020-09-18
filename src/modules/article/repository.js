@@ -9,6 +9,6 @@ export function find({ q, start, limit }) {
 
 export function findOneById(id) {
   return fetchAPI({
-    path: `/articles/${id}`,
+    path: `/article/${id}`,
   })
 }

@@ -58,6 +58,17 @@ function generateArticles(limit) {
   return articles
 }
 
-module.exports = {
-  articles: generateArticles(20),
+export default (req, res) => {
+  const id = req.query.id
+  let rtn = generateArticles(20)
+  if(id!==undefined){
+    rtn = rtn.filter(each=>{
+      return each.id == id
+    }
+    )[0]
+  }
+
+  res.statusCode = 200
+  res.setHeader('Content-Type', 'application/json')
+  res.end(JSON.stringify(rtn))
 }
