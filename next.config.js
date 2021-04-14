@@ -7,6 +7,7 @@ const withBundleAnalyzer = require('@zeit/next-bundle-analyzer')
 const CircularDependencyPlugin = require('circular-dependency-plugin')
 
 const nextConfig = {
+  distDir: 'build',
   assetPrefix: process.env.ASSET_PREFIX,
   analyzeBrowser: process.env.BUNDLE_ANALYZE === 'browser',
   bundleAnalyzerConfig: {
