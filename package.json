@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p $PORT",
+    "start": "next start -p 3000",
     "analyze": "BUNDLE_ANALYZE=browser npm run build",
     "export": "next export src",
     "doctoc": "npx doctoc README.md --github"
