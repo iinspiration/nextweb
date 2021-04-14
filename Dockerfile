@@ -1,13 +1,14 @@
 FROM node:15.2.1-alpine
 
-ENV TZ=Asia/Bangkok
+WORKDIR /app
 
-WORKDIR /home/node/app
-COPY . .
+ENV PATH /app/node_modules/.bin:$PATH
 
+COPY package.json /app/
+COPY yarn.lock /app/
 RUN yarn install
+
+COPY . /app
 RUN yarn build
-
+# start app
 CMD [ "yarn", "start" ]
-
-EXPOSE 3000
