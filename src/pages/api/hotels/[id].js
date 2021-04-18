@@ -1,10 +1,25 @@
 import get from 'lodash/get'
+import { checkReqAuth } from '@lib/auth'
 import * as API from '@modules/db/hotels/services'
 
 const table = 'hotels'
 
 export default async function hotelsId(req, res) {
   const method = get(req, 'method', null)
+  const headers = get(req, 'headers', {})
+  if (!checkReqAuth(headers)) {
+    res.status(401)
+    return res.json(
+      JSON.stringify(
+        {
+          statusCode: 401,
+          message: 'Unauthorized',
+        },
+        null,
+        2,
+      ),
+    )
+  }
   if (method === 'GET') {
     const rtn = await getOne(req)
     res.status(200)

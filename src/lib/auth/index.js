@@ -7,6 +7,8 @@ import { getAsPathByRouteName } from '@lib/router/utils'
 import * as AuthService from '@modules/_auth/services'
 import { AUTH_COOKIE_NAME, AUTH_COOKIE_MAX_AGE } from '@modules/_auth/config'
 
+import { get } from 'lodash'
+
 const defaultUserData = {
   isAuthenticated: null,
   profile: null,
@@ -87,4 +89,11 @@ function getDataFromToken(token) {
   if (token === null || token === false) return ''
 
   return jwtDecode(token)
+}
+
+export function checkReqAuth(headers) {
+  const bearerToken = get(headers, 'authorization', '')
+  const authToken = get(bearerToken.split(' '), '[1]', false)
+  if (!authToken) return false
+  if (authToken === process.env.API_SECRET) return true
 }
