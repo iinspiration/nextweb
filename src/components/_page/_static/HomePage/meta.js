@@ -1,7 +1,7 @@
 export function getMeta() {
   const meta = {
     main: {
-      title: 'โฮมเพจ',
+      title: 'Hotels management system',
       meta: {
         description: '',
         keywords: '',
