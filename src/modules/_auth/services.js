@@ -2,7 +2,10 @@ import { postAPI } from '@lib/api/helpers'
 
 export function signInWithEmail({ email, password }) {
   return postAPI({
-    apiUrl: process.env.HOST,
+    apiUrl:
+      process.env.NODE_ENV === 'production'
+        ? process.env.HOST
+        : process.env.DEVHOST,
     path: '/api/signIn',
     data: {
       email,

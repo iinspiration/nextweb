@@ -3,7 +3,9 @@ import axios from 'axios'
 const defaultTimeout = 10000
 
 export function fetchAPI({
-  apiUrl = process.env.API_URL,
+  apiUrl = process.env.NODE_ENV === 'production'
+    ? process.env.API_URL
+    : process.env.DEVAPI_URL,
   path,
   token,
   timeout = defaultTimeout,
@@ -20,7 +22,9 @@ export function fetchAPI({
 }
 
 export function postAPI({
-  apiUrl = process.env.API_URL,
+  apiUrl = process.env.NODE_ENV === 'production'
+    ? process.env.API_URL
+    : process.env.DEVAPI_URL,
   path,
   data,
   token,
@@ -41,14 +45,16 @@ export function postAPI({
 }
 
 export function fetchGQL({
-  apiURL = process.env.API_URL,
+  apiUrl = process.env.NODE_ENV === 'production'
+    ? process.env.API_URL
+    : process.env.DEVAPI_URL,
   query,
   timeout = defaultTimeout,
   variables = null,
 }) {
   return axios({
     method: 'post',
-    url: apiURL,
+    url: apiUrl,
     headers: { 'Content-Type': 'application/json' },
     data: {
       query,

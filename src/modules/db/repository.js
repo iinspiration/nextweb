@@ -1,18 +1,31 @@
 import connect from 'knex'
-
-const knex = process.env.DB_HOST
-  ? connect({
-      client: 'mysql',
-      connection: {
-        host: `${process.env.DB_HOST}`,
-        user: `${process.env.DB_USER}`,
-        password: `${process.env.DB_PASS}`,
-        port: `${process.env.DB_PORT}`,
-        database: `${process.env.DB_DATABASE}`,
-        timezone: 'Asia/Bangkok',
-      },
-    })
-  : null
+console.log('NODE_ENV', process.env.NODE_ENV)
+const knex =
+  process.env.NODE_ENV === 'production'
+    ? connect({
+        client: 'mysql',
+        connection: {
+          socketPath: '/cloudsql/nextapp-310704:asia-northeast1:appdb',
+          // host: `${process.env.DB_HOST}`,
+          user: `${process.env.DB_USER}`,
+          password: `${process.env.DB_PASS}`,
+          port: `${process.env.DB_PORT}`,
+          database: `${process.env.DB_DATABASE}`,
+          timezone: 'Asia/Bangkok',
+        },
+      })
+    : connect({
+        client: 'mysql',
+        connection: {
+          // socketPath : '/cloudsql/nextapp-310704:asia-northeast1:appdb',
+          host: `${process.env.DB_HOST}`,
+          user: `${process.env.DB_USER}`,
+          password: `${process.env.DB_PASS}`,
+          port: `${process.env.DB_PORT}`,
+          database: `${process.env.DB_DATABASE}`,
+          timezone: 'Asia/Bangkok',
+        },
+      })
 
 export function findAll({
   table,
