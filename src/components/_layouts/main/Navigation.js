@@ -36,8 +36,12 @@ export default function Navigation() {
   const { userData } = useMember()
 
   return (
-    <nav css={{ marginBottom: 10, borderBottom: '1px solid #aaa' }}>
-      {mainMenus.map(menu => (
+    <nav
+      css={{
+        'text-align': 'center',
+        // borderBottom: '1px solid #aaa',
+      }}>
+      {/* {mainMenus.map(menu => (
         <Link key={menu.name} route={menu.route} passHref>
           <LinkItem menu={menu} />
         </Link>
@@ -51,19 +55,20 @@ export default function Navigation() {
         <Link key="Login" route="auth-login" passHref>
           <LinkItem menu={{ name: 'Login' }} />
         </Link>
-      )}
+      )} */}
 
       <button
         onClick={() => toggleTheme()}
         css={{
-          float: 'right',
+          // float: 'right',
           padding: '8px 15px',
           border: `1px solid ${variables.colors.background.secondary}`,
           borderRadius: '5px',
           color: variables.colors.text.secondary,
-          textTransform: 'capitalize',
+          // textTransform: 'capitalize',
         }}>
-        {themeMode === 'light' ? 'dark' : 'light'} Mode
+        {/* {themeMode === 'light' ? 'dark' : 'light'} Mode */}
+        qweasdzxc.org
       </button>
     </nav>
   )
