@@ -1,7 +1,7 @@
 import get from 'lodash/get'
-import * as API from '@modules/db/users/services'
+import * as API from '@modules/db/hotels/services'
 
-export default async function users(req, res) {
+export default async function hotels(req, res) {
   const method = get(req, 'method', null)
 
   if (method === 'GET') {
@@ -24,7 +24,7 @@ async function getAll(req, res) {
   const offset = get(req, 'query.offset', 0)
   const limit = get(req, 'query.limit', 10)
   const option = {
-    table: ['users'],
+    table: ['hotels'],
     offset,
     limit,
   }
@@ -43,7 +43,7 @@ async function add(req, res) {
   const options = req.body
   let data = null
   try {
-    data = await API.addItem({ ...options }, { table: 'users' })
+    data = await API.addItem({ ...options }, { table: 'hotels' })
   } catch (error) {
     return {
       statusCode: 400,

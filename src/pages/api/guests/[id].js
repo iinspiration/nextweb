@@ -1,9 +1,9 @@
 import get from 'lodash/get'
-import * as API from '@modules/db/users/services'
+import * as API from '@modules/db/guests/services'
 
-const table = 'users'
+const table = 'guests'
 
-export default async function usersId(req, res) {
+export default async function guestsId(req, res) {
   const method = get(req, 'method', null)
   if (method === 'GET') {
     const rtn = await getOne(req)

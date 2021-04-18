@@ -17,7 +17,6 @@ const knex =
     : connect({
         client: 'mysql',
         connection: {
-          // socketPath : '/cloudsql/nextapp-310704:asia-northeast1:appdb',
           host: `${process.env.DB_HOST}`,
           user: `${process.env.DB_USER}`,
           password: `${process.env.DB_PASS}`,
@@ -63,9 +62,9 @@ export async function updateItem(fields, { table, where = null }) {
   return row
 }
 
-// export async function deleteItem(data, { table, where = null }) {
-//   const row = await knex(table)
-//     .where(where)
-//     .update(data)
-//   return row
-// }
+export async function deleteItem(data, { table, where = null }) {
+  const row = await knex(table)
+    .where(where)
+    .update(data)
+  return row
+}

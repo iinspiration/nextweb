@@ -12,7 +12,7 @@ const currentTime = new Date(new Date().getTime() + HOUR7)
 
 export async function findAll({ offset = 0, limit = 10 }) {
   const rows = await Repository.findAll({
-    table: 'users',
+    table: 'guests',
     orderBy: ['id', 'desc'],
     where: { status: 1 },
     offset,
@@ -27,7 +27,7 @@ export async function findAll({ offset = 0, limit = 10 }) {
   }
 }
 
-export async function findById({ id, fields = [], table = 'users' }) {
+export async function findById({ id, fields = [], table = 'guests' }) {
   const rows = await Repository.findById({
     fields,
     table,
@@ -43,21 +43,33 @@ export async function findById({ id, fields = [], table = 'users' }) {
 }
 
 export async function addItem(
-  { name, email, tel, role, hotel_id },
-  { table = 'users' },
+  {
+    name,
+    middlename,
+    lastname,
+    tel,
+    email,
+    checkin_date,
+    checkout_date,
+    remarks,
+  },
+  { table = 'guests' },
 ) {
-  if (!name || !email || !tel || !role | !hotel_id) {
+  if (!name || !tel || !email) {
     return false
   }
   const id = await Repository.addItem(
     {
       name,
-      email,
+      middlename,
+      lastname,
       tel,
+      email,
       created_date: `${currentDate} ${currentTime}`,
-      role: role,
+      checkin_date,
+      checkout_date,
+      remarks,
       status: 1,
-      hotel_id,
     },
     { table },
   ).then(rows => [rows])
@@ -72,7 +84,7 @@ export async function updateItem(fields, { table, id }) {
     where: { id: id },
   })
   if (rows) {
-    const result = await findById({ id, table: 'users' })
+    const result = await findById({ id, table: 'guests' })
     console.log('updateItem result', result)
     return result
   }
@@ -83,7 +95,7 @@ export async function deleteItem({ id }) {
   const rows = await Repository.updateItem(
     { status: 0 },
     {
-      table: 'users',
+      table: 'hotels',
       where: { id: id },
     },
   ).then(rows => rows)
