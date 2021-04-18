@@ -1,15 +1,29 @@
 import get from 'lodash/get'
+import { checkReqAuth } from '@lib/auth'
 import * as API from '@modules/db/rooms/services'
 
 export default async function rooms(req, res) {
   const method = get(req, 'method', null)
-
+  const headers = get(req, 'headers', {})
+  if (!checkReqAuth(headers)) {
+    res.status(401)
+    return res.json(
+      JSON.stringify(
+        {
+          statusCode: 401,
+          message: 'Unauthorized',
+        },
+        null,
+        2,
+      ),
+    )
+  }
   if (method === 'GET') {
-    const rtn = await getAll(req)
+    const rtn = await getAll(req, res)
     res.status(200)
     return res.json(rtn)
   } else if (method === 'POST') {
-    const rtn = await add(req)
+    const rtn = await add(req, res)
     res.status(200)
     return res.json(rtn)
   } else {

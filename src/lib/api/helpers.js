@@ -14,7 +14,7 @@ export function fetchAPI({
   return axios({
     baseURL: `${apiUrl}${path}`,
     headers: {
-      ...(token && { Authorization: `Bearer ${token}` }),
+      ...(token && { Authorization: `Bearer ${process.env.API_SECRET}` }),
     },
     timeout,
     ...options,
@@ -36,32 +36,11 @@ export function postAPI({
     url: `${apiUrl}${path}`,
     headers: {
       'Content-Type': 'application/json',
-      ...(token && { Authorization: `Bearer ${token}` }),
+      ...(token && { Authorization: `Bearer ${process.env.API_SECRET}` }),
     },
     data,
     timeout,
     ...options,
-  }).then(({ data }) => data)
-}
-
-export function fetchGQL({
-  apiUrl = process.env.NODE_ENV === 'production'
-    ? process.env.API_URL
-    : process.env.DEVAPI_URL,
-  query,
-  timeout = defaultTimeout,
-  variables = null,
-}) {
-  return axios({
-    method: 'post',
-    url: apiUrl,
-    headers: { 'Content-Type': 'application/json' },
-    data: {
-      query,
-      variables,
-      operationName: null,
-    },
-    timeout,
   }).then(({ data }) => data)
 }
 
