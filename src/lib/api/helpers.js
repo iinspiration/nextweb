@@ -2,19 +2,21 @@ import axios from 'axios'
 
 const defaultTimeout = 10000
 
-export function fetchAPI({
-  apiUrl = process.env.NODE_ENV === 'production'
-    ? process.env.API_URL
-    : process.env.DEVAPI_URL,
-  path,
-  token,
-  timeout = defaultTimeout,
-  ...options
-}) {
+export function fetchAPI(args) {
+  const {
+    apiUrl = process.env.NODE_ENV === 'production'
+      ? process.env.API_URL
+      : process.env.DEVAPI_URL,
+    path,
+    token,
+    timeout = defaultTimeout,
+    ...options
+  } = args
+  // console.log('fetchAPI args', args)
   return axios({
     baseURL: `${apiUrl}${path}`,
     headers: {
-      ...(token && { Authorization: `Bearer ${process.env.API_SECRET}` }),
+      ...(token && { Authorization: `Bearer ${token}` }),
     },
     timeout,
     ...options,

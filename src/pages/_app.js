@@ -26,16 +26,16 @@ export default class MyApp extends App {
 
     return (
       <Fragment>
-        <Helmet titleTemplate={`%s - nextweb.js`} />
-        <ThemeProvider>
-          <AuthProvider>
+        <Helmet titleTemplate={`%s - qweasdzxc.org`} />
+        <AuthProvider>
+          <ThemeProvider>
             <StoreProvider>
               <ErrorProvider>
                 <Component {...this.props.pageProps} router={router} />
               </ErrorProvider>
             </StoreProvider>
-          </AuthProvider>
-        </ThemeProvider>
+          </ThemeProvider>
+        </AuthProvider>
       </Fragment>
     )
   }

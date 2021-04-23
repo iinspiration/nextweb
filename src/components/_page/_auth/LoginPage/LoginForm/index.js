@@ -15,16 +15,19 @@ export default function LoginForm({ defaultValues }) {
 
   return (
     <Form
+      css={{ maxWidth: '1320px' }}
       defaultValues={defaultValues}
       schema={schema}
       onSubmit={data =>
-        onSubmit(data).then(response => {
-          signInWithToken(response.token)
+        onSubmit(data)
+          .then(response => {
+            signInWithToken(response.token)
 
-          router.push(
-            router.query.redirect || getAsPathByRouteName('auth-dashboard'),
-          )
-        })
+            router.push(router.query.redirect || getAsPathByRouteName('hotel'))
+          })
+          .catch(e => {
+            alert(e)
+          })
       }>
       {Template}
     </Form>

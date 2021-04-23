@@ -13,13 +13,11 @@ export function Page({ children, data, metaConfig, options = {} }) {
   const {
     userData: { isAuthenticated },
   } = useMember()
-
-  const Layout = layouts[options.layout || 'main']
   const restricted = options.restricted || false
 
   useEffect(() => {
     if (restricted && isAuthenticated === false) {
-      router.push(getHrefByRouteName('auth-login', { redirect: router.asPath }))
+      router.push(getHrefByRouteName('home', { redirect: router.asPath }))
     }
   }, [restricted, isAuthenticated])
 
@@ -27,7 +25,7 @@ export function Page({ children, data, metaConfig, options = {} }) {
     <Fragment>
       <Meta data={data} metaConfig={metaConfig} />
       <Stats data={data} metaConfig={metaConfig} />
-      <Layout restricted={restricted}>{children}</Layout>
+      {children}
     </Fragment>
   )
 }
