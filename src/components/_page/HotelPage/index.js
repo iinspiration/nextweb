@@ -3,12 +3,15 @@ import { Page } from '@lib/page'
 import { Box, Flex } from 'reflexbox'
 import Link from '@lib/router/Link'
 import MainLayout from '@components/_page/_layouts/main'
+import { useRouter } from 'next/router'
+import { getAsPathByRouteName } from '@lib/router/utils'
 
 import * as metaConfig from '@components/_page/HomePage/meta'
 
 export default function HotelPage(props) {
   const { data } = props
-  console.log('HotelPage props', props)
+  const router = useRouter()
+  // console.log('HotelPage props', props)
   return (
     <Page metaConfig={metaConfig} options={{ restricted: true }}>
       <MainLayout>
@@ -47,7 +50,7 @@ export default function HotelPage(props) {
                   <div css={{ fontSize: '1em', fontWeight: '500' }}>
                     {description}
                   </div>
-                  <Link route="hotel-detail" params={{ hotelId: id }} passHref>
+                  <Link route="hotel-detail" params={{ id }}>
                     <a
                       css={{
                         padding: 10,

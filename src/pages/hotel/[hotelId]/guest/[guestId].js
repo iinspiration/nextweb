@@ -1,5 +1,5 @@
 import withDynamicRendering from '@lib/page/withDynamicRendering'
-import * as PrizeService from '@modules/apiData/prize/service'
+// import * as PrizeService from '@modules/apiData/prize/service'
 import { throwError } from '@lib/api'
 export { default } from '@components/_page/GuestDetailPage'
 
@@ -10,17 +10,17 @@ export async function getServerSideProps(context) {
 
 async function fetchData(context) {
   const {
-    query: { campaignId, prizeId },
+    query: { guestId },
   } = context
 
-  const res = await PrizeService.getPrizeById({ campaignId, prizeId })
-  const data = await res?.data[0]
+  // const res = await PrizeService.getPrizeById({ campaignId, prizeId })
+  // const data = await res?.data[0]
 
-  if (!data) {
-    throwError(400)
-  }
+  // if (!data) {
+  //   throwError(400)
+  // }
 
-  return {
-    props: { data },
-  }
+  // return {
+  //   props: { data },
+  // }
 }

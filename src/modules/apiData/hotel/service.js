@@ -15,7 +15,7 @@ export function getHotels() {
 
 export function getHotelById({ id }) {
   return repository.find({ path: `/hotels/${id}` }).then(res => {
-    const response = res
+    const response = res?.result
 
     if (!response) {
       throwError(400)

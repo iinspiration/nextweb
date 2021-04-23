@@ -1,7 +1,7 @@
-import Reract, { Fragment } from 'react'
+import React, { Fragment } from 'react'
 import { useRouter } from 'next/router'
 import { Flex, Box } from 'reflexbox'
-
+import get from 'lodash/get'
 import { Page } from '@lib/page'
 import { media } from '@lib/styles/helpers'
 import { getAsPathByRouteName } from '@lib/router/utils'
@@ -31,7 +31,7 @@ export function HeadTitle({ data }) {
             [media('sm')]: { fontSize: '1.75em' },
           }}>
           <button
-            onClick={() => router.push(getAsPathByRouteName('campaign'))}
+            onClick={() => router.push(getAsPathByRouteName('hotel'))}
             css={{
               border: 'none',
               marginRight: '.25em',
@@ -63,31 +63,17 @@ export function HeadTitle({ data }) {
   )
 }
 
-export function ChartJs(props) {
-  const {
-    userData,
-    prizeData,
-    winnerData,
-    // totalMiss,
-    // winnerMissData,
-    prizeRemaining,
-  } = props
-  const fpdData = prizeData.filter(item => item.label === 'Foodpanda')
-  const jooxData = prizeData.filter(item => item.label === 'JOOX')
-  const tbdsData = prizeData.filter(item => item.label === 'thebodyshop')
-  const bnlcData = prizeData.filter(item => item.label === 'banilaco')
-  const wetvData = prizeData.filter(item => item.label === 'WeTV')
-  const wecmData = prizeData.filter(item => item.label === 'WeComics')
-  const pubgData = prizeData.filter(item => item.label === 'PubGMobile')
+export function DashBoard(props) {
+  const { data } = props
 
   return (
     <Fragment>
       <Flex flexWrap="wrap" mx={-2}>
         <Box width={[1, 1, 1 / 3]} px={2} py={3}>
           <BoxHilight
-            title1={'เล่นไปทั้งหมด'}
-            value1={parseFloat(winnerData.totalItems).toLocaleString()}
-            unit1={'ครั้ง'}
+            title1={'จำนวน ห้องพัก'}
+            value1={get(data, 'rooms')}
+            unit1={'ห้อง'}
             // title2={'พลาดรางวัลไป'}
             // value2={'xxx'}
             // unit2={'ครั้ง'}
@@ -98,8 +84,8 @@ export function ChartJs(props) {
             // ).toFixed(2)}  %)`
           />
           <BoxHilight
-            title1={'ผู้เข้าเล่นทั้งหมด'}
-            value1={userData.toLocaleString()}
+            title1={'จำนวน Staff'}
+            value1={get(data, 'staffs')}
             unit1={'คน'}
             // title2={'เฉลี่ยเล่นคนละ'}
             // value2={parseFloat(winnerData.totalItems / userData).toFixed(2)}
@@ -114,16 +100,16 @@ export function ChartJs(props) {
           />
         </Box> */}
         <Box width={[1, 1, 0.4 / 3]}></Box>
-        <Box width={[1, 1, 1.2 / 3]} p={2}>
+        {/* <Box width={[1, 1, 1.2 / 3]} p={2}>
           <TotalBarChart data={prizeData} />
-        </Box>
+        </Box> */}
       </Flex>
       {/* <Flex flexWrap="wrap" mx={-2} alignItems="flex-end">
         <Box width={[1, 1 / 2, 1 / 2, 2 / 3]} p={2}>
           <ChartWinner data={winnerData} />
         </Box>
       </Flex> */}
-      <Flex flexWrap="wrap" mx={-2}>
+      {/* <Flex flexWrap="wrap" mx={-2}>
         <Box width={[1, 1 / 2, 1 / 2, 1 / 3]} p={2}>
           <ChartThumbnail data={fpdData} color1="#cf1960" />
         </Box>
@@ -145,27 +131,18 @@ export function ChartJs(props) {
         <Box width={[1, 1 / 2, 1 / 2, 1 / 3]} p={2}>
           <ChartThumbnail data={bnlcData} color1="#f59fe9" />
         </Box>
-      </Flex>
+      </Flex> */}
     </Fragment>
   )
 }
 
-export default function CampaignDetailPage(props) {
-  const {
-    campaignInfo,
-    campaignData,
-    prizeData,
-    userData,
-    winnerInfo,
-    // winnerMissData,
-    // totalMiss,
-    prizeRemaining,
-  } = props
-  const { id } = campaignData
+export default function HotelDetailPage(props) {
+  const { hotelInfo, hotelData } = props
+  const { id } = hotelData
 
   return (
     <Page metaConfig={metaConfig}>
-      <MainLayout campaignId={id} campaignInfo={campaignInfo}>
+      <MainLayout hotelId={id} hotelInfo={hotelInfo}>
         <div
           className="container"
           css={{
@@ -173,16 +150,8 @@ export default function CampaignDetailPage(props) {
             padding: '0.55rem 1em',
             boxSizing: 'border-box',
           }}>
-          <HeadTitle data={campaignData} />
-          <ChartJs
-            data={campaignData}
-            userData={userData}
-            prizeData={prizeData}
-            winnerData={winnerInfo}
-            // winnerMissData={winnerMissData}
-            // totalMiss={totalMiss}
-            prizeRemaining={prizeRemaining}
-          />
+          <HeadTitle data={hotelData} />
+          <DashBoard data={hotelData} />
         </div>
       </MainLayout>
     </Page>

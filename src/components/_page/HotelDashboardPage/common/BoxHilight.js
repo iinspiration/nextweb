@@ -1,3 +1,4 @@
+import React from 'react'
 function BoxStyled(props) {
   return {
     position: 'relative',

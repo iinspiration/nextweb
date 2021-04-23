@@ -73,7 +73,7 @@ export function AuthProvider({ children }) {
       if (response.status === 200) {
         destroyCookie(null, AUTH_COOKIE_NAME, { path: '/' })
         setUserData({ ...defaultUserData, isAuthenticated: false })
-        router.push(getAsPathByRouteName('auth-login'))
+        router.push(getAsPathByRouteName('home'))
       }
     })
   }

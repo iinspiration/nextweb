@@ -37,7 +37,7 @@ export default function IntroNav() {
               fontWeight: 'bold',
               marginBottom: '.25em',
             }}>
-            Campaign Report
+            Hotels Report
           </h2>
         </div>
       </div>

@@ -14,11 +14,6 @@ const navList = [
     title: 'Guests',
     image: 'images/prize.svg',
   },
-  // {
-  //   route: 'campaign-user',
-  //   title: 'User',
-  //   image: 'images/user.svg',
-  // },
 ]
 
 const superAdminList = [
@@ -123,9 +118,7 @@ export default function Navigation({ campaignInfo }) {
               <Link route={route} params={{ hotelId: hotelId }} passHref>
                 <a
                   css={NavStyled()}
-                  className={
-                    `campaign-${currentPage}` === route ? 'active' : ''
-                  }>
+                  className={`hotel-${currentPage}` === route ? 'active' : ''}>
                   <img src={`${getStatic(image)}`} />
                   {title}
                 </a>

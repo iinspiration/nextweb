@@ -12,7 +12,7 @@ export async function getServerSideProps(context) {
 async function fetchData(context) {
   const res = await HotelService.getHotels()
   const data = await get(res, 'data.data')
-  console.log('data', data)
+  // console.log('data', data)
 
   if (!data) {
     throwError(400)

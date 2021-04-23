@@ -1,9 +1,6 @@
 import withDynamicRendering from '@lib/page/withDynamicRendering'
-import * as CampaignService from '@modules/apiData/campaign/service'
-import * as PrizeService from '@modules/apiData/prize/service'
-import * as UserService from '@modules/apiData/user/service'
-import * as WinnerService from '@modules/apiData/winner/service'
-
+import * as HotelService from '@modules/apiData/hotel/service'
+import get from 'lodash/get'
 import { throwError } from '@lib/api'
 export { default } from '@components/_page/HotelDashboardPage'
 
@@ -14,39 +11,25 @@ export async function getServerSideProps(context) {
 
 async function fetchData(context) {
   const {
-    query: { campaignId },
+    query: { hotelId },
   } = context
 
-  const [campaignRsp, userRsp, prizeRsp, winnerRsp] = await Promise.all([
-    CampaignService.getCampaignById({ id: campaignId }),
-    UserService.getUserCountByCampaign({ id: campaignId }),
-    PrizeService.getList({ id: campaignId }),
-    WinnerService.getInfo({ id: campaignId }),
+  const [hotelRsp] = await Promise.all([
+    HotelService.getHotelById({ id: hotelId }),
   ])
 
-  const campaignData = campaignRsp?.data
+  const hotelData = get(hotelRsp, 'data.data.[0]')
 
-  const userData = userRsp?.data
+  // console.log('hotelData', hotelData)
 
-  const prizeData = prizeRsp?.data?.sort((a, b) => a.id - b.id)
-  const prizeRemaining = prizeRsp?.prizeRemaining
-
-  const winnerInfo = winnerRsp?.data
-
-  if (!campaignData || !prizeData || !userData || !winnerRsp) {
+  if (!hotelData) {
     throwError(400)
   }
 
   return {
     props: {
-      campaignInfo: campaignData,
-      campaignData,
-      prizeData,
-      prizeRemaining,
-      userData,
-      winnerInfo,
-      // winnerMissData,
-      // totalMiss,
+      hotelInfo: hotelData,
+      hotelData,
     },
   }
 }

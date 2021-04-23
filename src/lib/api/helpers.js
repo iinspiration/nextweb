@@ -12,7 +12,7 @@ export function fetchAPI(args) {
     timeout = defaultTimeout,
     ...options
   } = args
-  console.log('fetchAPI args', args)
+  // console.log('fetchAPI args', args)
   return axios({
     baseURL: `${apiUrl}${path}`,
     headers: {
