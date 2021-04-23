@@ -5,8 +5,9 @@ const knex =
     ? connect({
         client: 'mysql',
         connection: {
-          socketPath: '/cloudsql/nextapp-310704:asia-northeast1:appdb',
-          // host: `${process.env.DB_HOST}`,
+          socketPath: `${process.env.DB_SOCKETPATH}`,
+          // socketPath: '/cloudsql/nextapp-310704:asia-northeast1:appdb',
+          // host: `${process.env.DB_SOCKETPATH}`,
           user: `${process.env.DB_USER}`,
           password: `${process.env.DB_PASS}`,
           port: `${process.env.DB_PORT}`,

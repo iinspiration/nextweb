@@ -4,8 +4,7 @@ export default yup.object().shape({
   email: yup
     .string()
     .trim()
-    .email('อีเมลไม่ถูกต้อง')
-    .required('กรุณากรอกอีเมล'),
+    .required('กรุณากรอก Email'),
   password: yup
     .string()
     .trim()

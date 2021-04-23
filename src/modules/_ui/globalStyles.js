@@ -4,14 +4,15 @@ export default function getGlobalStyles(variables) {
   return css`
     html,
     body {
-      padding: 3rem 1rem;
+      padding: 0;
       margin: 0;
       min-height: 100%;
-      font-family: 'Open Sans', sans-serif;
-      font-size: 16px;
       color: ${variables.colors.text.primary};
-      background-color: ${variables.colors.background.primary};
-      line-height: 1.5;
+      background-color: #eee;
+      font-family: 'sukhumvit';
+      font-size: 16px;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     }
     img {
       width: 100%;
@@ -22,21 +23,28 @@ export default function getGlobalStyles(variables) {
       color: ${variables.colors.link};
       font-weight: bold;
     }
-    h2 {
-      font-size: 24px;
-      border-bottom: 1px solid ${variables.colors.background.secondary};
-      padding-bottom: 5px;
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
-    h3 {
-      font-size: 20px;
-      margin: 5px 0 10px;
-    }
     a,
     button {
       outline: none;
       cursor: pointer;
+    }
+    strong {
+      font-weight: bold;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    h1 {
+      font-size: 2.5em;
+      font-weight: bold;
+    }
+    h2 {
+      font-size: 2em;
+      font-weight: bold;
+    }
+    h3 {
+      font-size: 1.5em;
+      font-weight: bold;
     }
   `
 }

@@ -27,7 +27,8 @@ export function Page({ children, data, metaConfig, options = {} }) {
     <Fragment>
       <Meta data={data} metaConfig={metaConfig} />
       <Stats data={data} metaConfig={metaConfig} />
-      <Layout restricted={restricted}>{children}</Layout>
+      {/* <Layout restricted={restricted}>{children}</Layout> */}
+      {children}
     </Fragment>
   )
 }

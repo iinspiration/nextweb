@@ -85,7 +85,7 @@ export function AuthProvider({ children }) {
   )
 }
 
-function getDataFromToken(token) {
+export function getDataFromToken(token) {
   if (token === null || token === false) return ''
 
   return jwtDecode(token)
