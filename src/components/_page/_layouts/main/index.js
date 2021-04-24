@@ -19,7 +19,7 @@ function bodyStyled() {
   }
 }
 
-export default function MainLayout({ campaignInfo, campaignId, children }) {
+export default function MainLayout({ hotelInfo, children }) {
   return (
     <Flex flexWrap="wrap" css={bodyStyled()}>
       <Box
@@ -32,7 +32,7 @@ export default function MainLayout({ campaignInfo, campaignId, children }) {
           [media('lg')]: { height: '100vh' },
         }}>
         <IntroNav />
-        {campaignId !== undefined && <Navigation campaignInfo={campaignInfo} />}
+        {hotelInfo !== undefined && <Navigation hotelInfo={hotelInfo} />}
       </Box>
       <Box
         width={[1, 1, 5 / 6, 7 / 8]}

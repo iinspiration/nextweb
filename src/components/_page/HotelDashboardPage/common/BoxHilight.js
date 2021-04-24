@@ -62,16 +62,18 @@ export default function BoxHilight(props) {
             }}>
             {value1}
           </p>
-          <p
-            css={{
-              fontWeight: '300',
-              margin: '0 .5em',
-            }}>
-            {unit1}
-          </p>
+          {unit1 && (
+            <p
+              css={{
+                fontWeight: '300',
+                margin: '0 .5em',
+              }}>
+              {unit1}
+            </p>
+          )}
         </div>
       </div>
-      {title2 === ' ' && (
+      {title2 && (
         <div css={{ padding: '0.75em 0', fontSize: '2em' }}>
           <h1
             css={{
@@ -95,13 +97,15 @@ export default function BoxHilight(props) {
               }}>
               {value2}
             </p>
-            <p
-              css={{
-                fontWeight: '300',
-                margin: '0 .5em',
-              }}>
-              {unit2}
-            </p>
+            {unit2 && (
+              <p
+                css={{
+                  fontWeight: '300',
+                  margin: '0 .5em',
+                }}>
+                {unit2}
+              </p>
+            )}
           </div>
           <p
             css={{

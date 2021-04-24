@@ -11,7 +11,7 @@ import * as metaConfig from '@components/_page/HomePage/meta'
 export default function HotelPage(props) {
   const { data } = props
   const router = useRouter()
-  // console.log('HotelPage props', props)
+  console.log('HotelPage props', props)
   return (
     <Page metaConfig={metaConfig} options={{ restricted: true }}>
       <MainLayout>
