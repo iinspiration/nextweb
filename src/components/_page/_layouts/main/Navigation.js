@@ -11,8 +11,23 @@ import { AUTH_COOKIE_NAME } from '@modules/_auth/config'
 const navList = [
   {
     route: 'hotel-guest',
-    title: 'Guests',
+    title: 'Rooms',
     image: 'images/prize.svg',
+  },
+  {
+    route: 'hotel-guest',
+    title: 'Guests',
+    image: 'images/user.svg',
+  },
+  {
+    route: 'hotel-guest',
+    title: 'Staffs',
+    image: 'images/user.svg',
+  },
+  {
+    route: 'hotel-guest',
+    title: 'Financial Report',
+    image: 'images/winner.svg',
   },
 ]
 
@@ -36,10 +51,6 @@ function NavStyled() {
     transition: 'all 0.5s',
     background:
       'linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.0) 100%)',
-    '&:hover, &.active': {
-      background:
-        'linear-gradient(180deg, rgba(155,0,0,0.85) 0%, rgba(255,255,255,0) 100%)',
-    },
     img: {
       height: 25,
     },
@@ -57,7 +68,7 @@ function NavStyled() {
   }
 }
 
-export default function Navigation({ campaignInfo }) {
+export default function Navigation({ hotelInfo }) {
   const {
     query: { hotelId },
     asPath,
@@ -103,7 +114,7 @@ export default function Navigation({ campaignInfo }) {
           '@media (min-width: 832px)': { flexDirection: 'column' },
         }}>
         <li css={{ margin: 0 }}>
-          <Link route="hotel-detail" params={{ hotelId: hotelId }} passHref>
+          <Link route="hotel-detail" params={{ id: hotelId }} passHref>
             <a
               css={NavStyled()}
               className={currentPage === null ? 'active' : ''}>
@@ -115,7 +126,7 @@ export default function Navigation({ campaignInfo }) {
         {menus.map(({ route, title, image }, i) => {
           return (
             <li css={{ margin: 0 }} key={i}>
-              <Link route={route} params={{ hotelId: hotelId }} passHref>
+              <Link route={route} params={{ id: hotelId }} passHref>
                 <a
                   css={NavStyled()}
                   className={`hotel-${currentPage}` === route ? 'active' : ''}>

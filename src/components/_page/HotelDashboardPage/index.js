@@ -71,35 +71,36 @@ export function DashBoard(props) {
       <Flex flexWrap="wrap" mx={-2}>
         <Box width={[1, 1, 1 / 3]} px={2} py={3}>
           <BoxHilight
-            title1={'จำนวน ห้องพัก'}
-            value1={get(data, 'rooms')}
-            unit1={'ห้อง'}
-            // title2={'พลาดรางวัลไป'}
-            // value2={'xxx'}
-            // unit2={'ครั้ง'}
-            // subValue2={'xxx'}
-            // `(${(
-            //   (totalMiss * 100) /
-            //   parseFloat(winnerData.totalItems)
-            // ).toFixed(2)}  %)`
+            title1={'Checked-in Guests'}
+            value1={30}
+            title2={'Bookings'}
+            value2={25}
           />
+
           <BoxHilight
-            title1={'จำนวน Staff'}
+            title1={'Active Staff'}
             value1={get(data, 'staffs')}
-            unit1={'คน'}
-            // title2={'เฉลี่ยเล่นคนละ'}
-            // value2={parseFloat(winnerData.totalItems / userData).toFixed(2)}
+            // unit1={''}
+            title2={'All employees'}
+            value2={8}
             // unit2={'ครั้ง'}
           />
         </Box>
-        {/* <Box width={[1, 1, 1 / 3]} px={2} py={3}>
-          <PredictReward
-            data={winnerData}
-            dataMiss={winnerMissData}
-            prizeRemaining={prizeRemaining}
+        <Box width={[1, 1, 1 / 3]} px={2} py={3}>
+          <BoxHilight
+            title1={`Today's Checkout Guests`}
+            value1={5}
+            title2={'Bookings'}
+            value2={3}
           />
-        </Box> */}
-        <Box width={[1, 1, 0.4 / 3]}></Box>
+          <BoxHilight title1={'Walk-in slot'} value1={6} />
+        </Box>
+        <Box width={[1, 1, 1 / 3]} px={2} py={3}>
+          <BoxHilight title1={'Active Rooms'} value1={16} />
+          <BoxHilight title1={'Available Rooms'} value1={get(data, 'rooms')} />
+        </Box>
+        {/* <Box width={[1, 1, 1 / 3]} px={2} py={3}></Box> */}
+        {/* <Box width={[1, 1, 0.4 / 3]}></Box> */}
         {/* <Box width={[1, 1, 1.2 / 3]} p={2}>
           <TotalBarChart data={prizeData} />
         </Box> */}
@@ -138,11 +139,10 @@ export function DashBoard(props) {
 
 export default function HotelDetailPage(props) {
   const { hotelInfo, hotelData } = props
-  const { id } = hotelData
 
   return (
     <Page metaConfig={metaConfig}>
-      <MainLayout hotelId={id} hotelInfo={hotelInfo}>
+      <MainLayout hotelInfo={hotelInfo}>
         <div
           className="container"
           css={{
