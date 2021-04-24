@@ -37,7 +37,7 @@ export default function HotelPage(props) {
                     color: '#fff',
                     borderRadius: '10px',
                     boxShadow: '1px 1px 10px 0px rgba(0,0,0,0.1)',
-                    background: '#16c79a',
+                    background: '#11698e',
                   }}>
                   <div
                     css={{
@@ -45,7 +45,7 @@ export default function HotelPage(props) {
                       fontWeight: '700',
                       margin: '0 0 .75em 0',
                     }}>
-                    {id}. {name}
+                    {name}
                   </div>
                   <div css={{ fontSize: '1em', fontWeight: '500' }}>
                     {description}
